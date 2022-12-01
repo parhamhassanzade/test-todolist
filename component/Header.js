@@ -11,12 +11,12 @@ import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
 import FactCheckOutlinedIcon from "@mui/icons-material/FactCheckOutlined";
 import Link from "next/link";
-
+import { useDispatch, useSelector } from "react-redux";
 const pages = ["AboutUS", "Contact"];
 
-export default function Header() {
+export default function Header(props) {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
-
+  const { alltasks, notDone, Dones } = useSelector((state) => state.todo);
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
@@ -134,9 +134,9 @@ export default function Header() {
               gap: "30px",
             }}
           >
-            <Typography>All your Todo:</Typography>
-            <Typography>Finished:</Typography>
-            <Typography>NotFinished:</Typography>
+            <Typography>All your Todo:{alltasks}</Typography>
+            <Typography>Finished:{Dones}</Typography>
+            <Typography>NotFinished:{notDone}</Typography>
           </Box>
         </Toolbar>
       </Container>

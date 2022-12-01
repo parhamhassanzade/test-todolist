@@ -4,7 +4,6 @@ import styles from "../styles/Home.module.css";
 import Link from "next/link";
 import Typography from "@mui/material/Typography";
 import Layout from "../component/Layout";
-
 export default function Home() {
   return (
     <Layout>

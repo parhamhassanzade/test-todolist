@@ -1,17 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 export const todoSlice = createSlice({
-  name: "Todo",
+  name: "todo",
   initialState: {
-    count: 0,
-    task: [],
+    alltasks: 0,
+    tasks: [],
     Dones: 0,
     notDone: 0,
   },
   reducers: {
-    // increment: (state) => {
-    //   state.count += 1;
-    // },
     // decrement: (state) => {
     //   state.count -= 1;
     // },
@@ -20,11 +17,17 @@ export const todoSlice = createSlice({
     // },
 
     addTask: (state, action) => {
-      state.task.push(action.payload);
+      state.tasks.push(action.payload);
+    },
+    increment: (state) => {
+      state.alltasks += 1;
+    },
+    CountUnFinished: (state) => {
+      state.notDone += 1;
     },
   },
 });
 
-export const { addTask } = todoSlice.actions;
+export const { addTask, increment, CountUnFinished } = todoSlice.actions;
 
 export default todoSlice.reducer;

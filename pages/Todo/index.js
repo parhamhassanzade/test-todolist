@@ -4,22 +4,30 @@ import Layout from "../../component/Layout";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import FormControl from "@mui/material/FormControl";
-import InputLabel from "@mui/material/InputLabel";
-import OutlinedInput from "@mui/material/OutlinedInput";
-import InputAdornment from "@mui/material/InputAdornment";
 import CardItem from "../../component/cardItem";
-import { addTask } from "../../redux/todo";
+import { addTask, increment, CountUnFinished } from "../../redux/todo";
 import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-toastify";
+import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
 function index() {
-  const [values, setValues] = useState({
-    amount: "",
-    password: "",
-    weight: "",
-    weightRange: "",
-    showPassword: false,
-  });
-  const handleChange = (prop) => (event) => {
-    setValues({ ...values, [prop]: event.target.value });
+  const dispatch = useDispatch();
+  const { alltasks, tasks } = useSelector((state) => state.todo);
+  const [task, setTask] = useState("");
+  const handleChange = (event) => {
+    setTask(event.target.value);
+  };
+
+  const handleSubmitTask = () => {
+    if (task.length > 0) {
+      dispatch(addTask(task));
+      dispatch(increment());
+      dispatch(CountUnFinished());
+      setTask("");
+      toast.success("your task added successfuly");
+    } else {
+      toast.warn("please first add a new task");
+    }
   };
   return (
     <>
@@ -36,22 +44,54 @@ function index() {
           }}
         >
           {" "}
-          <FormControl fullWidth sx={{ m: 1 }}>
+          <FormControl fullWidth sx={{ m: 1, display: "flex" }}>
             <TextField
               variant="outlined"
               label="new task...."
-              value={values.amount}
-              onChange={handleChange("amount")}
+              value={task}
+              onChange={(e) => handleChange(e)}
             />
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                m: 1,
+                gap: "15px",
+              }}
+            >
+              <Button
+                sx={{
+                  width: "150px",
+                }}
+                variant="contained"
+                color="success"
+                onClick={handleSubmitTask}
+              >
+                Add
+              </Button>
+              <Button
+                sx={{
+                  width: "150px",
+                }}
+                variant="outlined"
+                color="error"
+              >
+                cancle
+              </Button>
+            </Box>
           </FormControl>
         </Box>
         <Box
           sx={{ display: "flex", justifyContent: "center", gap: "15px", p: 2 }}
         >
-          <CardItem />
-          <CardItem />
-          <CardItem />
-          <CardItem />
+          {tasks.length > 0 ? (
+            tasks.map((text, index) => <CardItem key={index} taskText={text} />)
+          ) : (
+            <Typography textAlign="center">
+              you dont have any task here...{" "}
+            </Typography>
+          )}
         </Box>
       </Layout>
     </>
