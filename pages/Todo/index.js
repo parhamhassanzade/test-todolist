@@ -8,7 +8,8 @@ import InputLabel from "@mui/material/InputLabel";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import InputAdornment from "@mui/material/InputAdornment";
 import CardItem from "../../component/cardItem";
-
+import { addTask } from "../../redux/todo";
+import { useDispatch, useSelector } from "react-redux";
 function index() {
   const [values, setValues] = useState({
     amount: "",
