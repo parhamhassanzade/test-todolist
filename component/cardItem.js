@@ -9,7 +9,7 @@ import DeleteForeverOutlinedIcon from "@mui/icons-material/DeleteForeverOutlined
 import ModeEditOutlineOutlinedIcon from "@mui/icons-material/ModeEditOutlineOutlined";
 import Checkbox from "@mui/material/Checkbox";
 
-const label = { inputProps: { "aria-label": "Checkbox demo" } };
+// const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
 export default function CardItem({ taskText }) {
   const theme = useTheme();
@@ -18,7 +18,7 @@ export default function CardItem({ taskText }) {
     <Card sx={{ display: "flex" }}>
       <Box sx={{ display: "flex", flexDirection: "column" }}>
         <CardContent sx={{ flex: "1 0 auto" }}>
-          <Typography component="div" variant="p">
+          <Typography align="center" component="div" variant="p">
             {taskText}
           </Typography>
         </CardContent>
@@ -29,7 +29,7 @@ export default function CardItem({ taskText }) {
           <IconButton>
             <ModeEditOutlineOutlinedIcon />
           </IconButton>
-          <Checkbox {...label} />
+          {/* <Checkbox {...label} /> */}
         </Box>
       </Box>
     </Card>
