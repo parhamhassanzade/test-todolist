@@ -7,12 +7,20 @@ import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import DeleteForeverOutlinedIcon from "@mui/icons-material/DeleteForeverOutlined";
 import ModeEditOutlineOutlinedIcon from "@mui/icons-material/ModeEditOutlineOutlined";
-import Checkbox from "@mui/material/Checkbox";
-
-// const label = { inputProps: { "aria-label": "Checkbox demo" } };
+import { useSelector, useDispatch } from "react-redux";
+import { DeleteTask } from "../redux/todo";
 
 export default function CardItem({ taskText }) {
+  const dispatch = useDispatch();
   const theme = useTheme();
+  const { tasks } = useSelector((state) => state.todo);
+
+  const handleDeleteTask = (taskText) => {
+    console.log("here", taskText, tasks);
+    const result = tasks.filter((tasks) => tasks != taskText);
+    dispatch(DeleteTask(result));
+    console.log(result);
+  };
 
   return (
     <Card sx={{ display: "flex" }}>
@@ -23,13 +31,12 @@ export default function CardItem({ taskText }) {
           </Typography>
         </CardContent>
         <Box sx={{ display: "flex", alignItems: "center", pl: 1, pb: 1 }}>
-          <IconButton>
+          <IconButton onClick={() => handleDeleteTask(taskText)}>
             <DeleteForeverOutlinedIcon />
           </IconButton>
           <IconButton>
             <ModeEditOutlineOutlinedIcon />
           </IconButton>
-          {/* <Checkbox {...label} /> */}
         </Box>
       </Box>
     </Card>

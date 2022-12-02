@@ -25,9 +25,13 @@ export const todoSlice = createSlice({
     CountUnFinished: (state) => {
       state.notDone += 1;
     },
+    DeleteTask: (state, action) => {
+      state.tasks = action.payload;
+    },
   },
 });
 
-export const { addTask, increment, CountUnFinished } = todoSlice.actions;
+export const { addTask, increment, CountUnFinished, DeleteTask } =
+  todoSlice.actions;
 
 export default todoSlice.reducer;
