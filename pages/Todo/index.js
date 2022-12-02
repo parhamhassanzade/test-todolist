@@ -5,7 +5,13 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import FormControl from "@mui/material/FormControl";
 import CardItem from "../../component/cardItem";
-import { addTask, increment, CountUnFinished } from "../../redux/todo";
+import {
+  addTask,
+  increment,
+  CountUnFinished,
+  DeleteTask,
+  Edittask,
+} from "../../redux/todo";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import Button from "@mui/material/Button";
@@ -29,6 +35,10 @@ function index() {
     } else {
       toast.warn("please first add a new task");
     }
+  };
+  const handleEditetask = (taskText) => {
+    setTask(taskText);
+    dispatch(Edittask(taskText));
   };
   return (
     <>
@@ -87,7 +97,13 @@ function index() {
           sx={{ display: "flex", justifyContent: "center", gap: "15px", p: 2 }}
         >
           {tasks.length > 0 ? (
-            tasks.map((text, index) => <CardItem key={index} taskText={text} />)
+            tasks.map((text, index) => (
+              <CardItem
+                key={index}
+                taskText={text}
+                handleEditetask={handleEditetask}
+              />
+            ))
           ) : (
             <Typography textAlign="center">
               you dont have any task here...{" "}

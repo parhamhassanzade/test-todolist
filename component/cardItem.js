@@ -10,15 +10,15 @@ import ModeEditOutlineOutlinedIcon from "@mui/icons-material/ModeEditOutlineOutl
 import { useSelector, useDispatch } from "react-redux";
 import { DeleteTask, addTask, increment, CountUnFinished } from "../redux/todo";
 
-export default function CardItem({ taskText }) {
+export default function CardItem({ taskText, handleEditetask }) {
   const dispatch = useDispatch();
   const theme = useTheme();
   const { tasks } = useSelector((state) => state.todo);
 
   const handleDeleteTask = (taskText) => {
     // console.log("here", taskText, tasks);
-    const result = tasks.filter((tasks) => tasks != taskText);
-    dispatch(DeleteTask(result));
+    // const result = tasks.filter((tasks) => tasks != taskText);
+    dispatch(DeleteTask(taskText));
     // console.log(result);
   };
 
@@ -34,7 +34,7 @@ export default function CardItem({ taskText }) {
           <IconButton onClick={() => handleDeleteTask(taskText)}>
             <DeleteForeverOutlinedIcon />
           </IconButton>
-          <IconButton>
+          <IconButton onClick={() => handleEditetask(taskText)}>
             <ModeEditOutlineOutlinedIcon />
           </IconButton>
         </Box>

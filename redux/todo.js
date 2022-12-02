@@ -26,15 +26,21 @@ export const todoSlice = createSlice({
       state.notDone += 1;
     },
     DeleteTask: (state, action) => {
-      state.tasks = action.payload;
+      const result = state.tasks.filter((tasks) => tasks != action.payload);
+      state.tasks = result;
       state.notDone -= 1;
-
       state.Dones += 1;
+    },
+    Edittask: (state, action) => {
+      const result = state.tasks.filter((tasks) => tasks != action.payload);
+      state.tasks = result;
+      state.alltasks -= 1;
+      state.notDone -= 1;
     },
   },
 });
 
-export const { addTask, increment, CountUnFinished, DeleteTask } =
+export const { addTask, increment, CountUnFinished, DeleteTask, Edittask } =
   todoSlice.actions;
 
 export default todoSlice.reducer;
