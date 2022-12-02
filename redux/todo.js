@@ -27,6 +27,9 @@ export const todoSlice = createSlice({
     },
     DeleteTask: (state, action) => {
       state.tasks = action.payload;
+      state.notDone -= 1;
+
+      state.Dones += 1;
     },
   },
 });

@@ -8,7 +8,7 @@ import Typography from "@mui/material/Typography";
 import DeleteForeverOutlinedIcon from "@mui/icons-material/DeleteForeverOutlined";
 import ModeEditOutlineOutlinedIcon from "@mui/icons-material/ModeEditOutlineOutlined";
 import { useSelector, useDispatch } from "react-redux";
-import { DeleteTask } from "../redux/todo";
+import { DeleteTask, addTask, increment, CountUnFinished } from "../redux/todo";
 
 export default function CardItem({ taskText }) {
   const dispatch = useDispatch();
@@ -16,10 +16,10 @@ export default function CardItem({ taskText }) {
   const { tasks } = useSelector((state) => state.todo);
 
   const handleDeleteTask = (taskText) => {
-    console.log("here", taskText, tasks);
+    // console.log("here", taskText, tasks);
     const result = tasks.filter((tasks) => tasks != taskText);
     dispatch(DeleteTask(result));
-    console.log(result);
+    // console.log(result);
   };
 
   return (
