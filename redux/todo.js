@@ -9,12 +9,7 @@ export const todoSlice = createSlice({
     notDone: 0,
   },
   reducers: {
-    // decrement: (state) => {
-    //   state.count -= 1;
-    // },
-    // incrementByAmount: (state, action) => {
-    //   state.count += action.payload;
-    // },
+
 
     addTask: (state, action) => {
       state.tasks.push(action.payload);

@@ -16,10 +16,7 @@ export default function CardItem({ taskText, handleEditetask }) {
   const { tasks } = useSelector((state) => state.todo);
 
   const handleDeleteTask = (taskText) => {
-    // console.log("here", taskText, tasks);
-    // const result = tasks.filter((tasks) => tasks != taskText);
     dispatch(DeleteTask(taskText));
-    // console.log(result);
   };
 
   return (

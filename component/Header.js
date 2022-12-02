@@ -12,7 +12,7 @@ import MenuItem from "@mui/material/MenuItem";
 import FactCheckOutlinedIcon from "@mui/icons-material/FactCheckOutlined";
 import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
-const pages = ["AboutUS", "Contact"];
+const pages = ["Contact"];
 
 export default function Header(props) {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -20,17 +20,10 @@ export default function Header(props) {
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
-  //   const handleOpenUserMenu = (event) => {
-  //     setAnchorElUser(event.currentTarget);
-  //   };
 
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
   };
-
-  //   const handleCloseUserMenu = () => {
-  //     setAnchorElUser(null);
-  //   };
 
   return (
     <AppBar position="static">
